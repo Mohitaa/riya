@@ -1,0 +1,137 @@
+<h3>
+    Hospitals
+    <small>Displaying list of all the hospital in the system.</small>
+
+
+</h3>
+
+<div ng-controller="viewUserController" class="container-fluid">
+    <!-- START DATATABLE 2 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-class="{'whirl duo' : showloader }">
+                    <button ng-click="exportData()" class="pull-right btn btn-sm btn-info">Export To CSV</button>
+
+                </div>
+                <div style="clear:both"></div>
+                <div class="table-responsive">
+                    <table id="datatable21" class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th style="text-align:center">S.No</th>
+                            <th hidden>Admin Id</th>
+                            <th style="text-align:center">Hospital Name</th>
+                            <th style="text-align:center">Hospital Image</th>
+                            <th style="text-align:center">Registration No</th>
+                            <th style="text-align:center">Specialization</th>
+                            <th style="text-align:center">Contacts</th>
+                            <th style="text-align:center">Address</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr style='background-color: {{data.color}} !important' ng-repeat="data in list | orderBy:'-center_id'">
+                            <td style="text-align:center">{{$index + 1}}</td>
+                            <td hidden>{{data.center_id}}</td>
+                            <td style="text-align:center">{{data.name}}</td>
+                            <td  style="text-align:center"><span class="portfolio"><a title="Hospital Image"><img src="{{data.hospital_image}}" style="width:100px;height:100px"></a></span></td>
+                            <td style="text-align:center">{{data.reg_no}}</td>
+                            <td style="text-align:center">{{data.contacts}}</td>
+                            <td style="text-align:center">{{data.opening_hours}}</td>
+                            <td style="text-align:center">{{data.closing_hours}}</td>
+                            <td ><b>Address</b> -{{data.address}} <br>
+                                <b>City</b> - {{data.city}}<br>
+                                <b>State</b> - {{data.state}}<br>
+                                <b>Country</b> - {{data.country}}<br>
+                                <b>Pin Code</b> - {{data.pin_code}}</td>
+
+                            <td>
+                                <a ng-show="data.show_latitude" ng-disabled="{{data.show_latitude}}" class="btn btn-sm btn-default1" title="View Location">
+                                    <i class="fa fa-eye view"></i>
+                                </a>
+                                <a  ng-hide="data.show_latitude" ng-disabled="{{data.show_latitude}}" class="btn btn-sm btn-default1"  ng-click="viewLocation(data.center_id,data.name,data.latitude,data.longitude,data.address)"
+                                   title="View Location">
+                                    <i class="fa fa-eye view"></i>
+                                </a>
+                                <a class="btn btn-sm btn-default1" ng-href='#{{data.editHospital_url}}'
+                                   title="Edit">
+                                    <i class="fa fa-pencil pencil-icon"></i>
+                                </a>
+                                <a class="btn btn-sm btn-default1" title="block" ng-hide="{{data.is_blocked}}" ng-click="blockunblockHospital_popup(1,data.center_id)">
+                                    <i class="fa fa-unlock unblock-icon"></i>
+                                </a>
+                                <a class="btn btn-sm btn-default1" title="unblock" ng-show="{{data.is_blocked}}" ng-click="blockunblockHospital_popup(0,data.center_id)">
+                                    <i class="fa fa-lock block-icon"></i>
+                                </a>
+                                <a class="btn btn-sm btn-default1"  ng-click="deleteHospitalPop(data.center_id,data.name)"
+                                   title="Delete">
+                                    <i class="fa fa-trash-o block-icon"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END DATATABLE 2 -->
+
+    <!-- **************************************************************************
+  ******************* Modal to display msg **************************************
+  *******************************************************************************-->
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-info" style="margin-top:20px;float:right;">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+
+
+    <!-- ***************************************************************************
+******************* Modal for delete driver ************************************
+********************************************************************************-->
+    <script type="text/ng-template" id="delete_hospital_modalDialog">
+        <div class="ngdialog-message">
+            <h4>Are you sure you want to delete {{data.hospital_name}} Hospital?</h4>
+            <div  style="  margin-top: 20px;text-align: right;">
+                <form method="post" validate-form="" novalidate="" id="approve-driver" >
+                    <button type="submit" ng-click="deleteHospital()" class="btn btn-primary" >Submit</button>
+                    <button type="button" ng-click="closeThisDialog(0)" class="btn btn-default" style='margin-left:20px;'>Cancel</button>
+                </form>
+            </div>
+        </div>
+    </script>
+    <!-- ***************************************************************************
+******************* Location of hospital on map ************************************
+********************************************************************************-->
+    <script type="text/ng-template" id="open_map_dialog">
+        <div class="LiveTrackingMap">
+            <h4>Location of {{hos_name}}</h4>
+                <h4>Address  {{hos_address}}</h4>
+            </div>
+        <br>
+        <div class="panel panel-default">
+            <div class="panel-body" >
+                <div id="map-container" style="height: 350px;margin-bottom: 15px;"></div>
+            </div>
+        </div>
+    </script>
+
+    <!-- ***************************************************************************
+******************* Modal for block unblock driver ************************************
+********************************************************************************-->
+    <script type="text/ng-template" id="block_unblock_driver_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{blockunblockmsg}}</h4>
+            <div >
+                <form method="post" validate-form="" novalidate="" style="text-align: right;margin-top: 20px;">
+                    <button type="submit" ng-click="do_block_unblock_hospital(is_blocked,blockunblockid)" class="btn btn-primary" >Yes</button>
+                    <button type="button" ng-click="closeThisDialog(0)" class="btn btn-primary" style='margin-left:20px;'>No</button>
+                </form>
+            </div>
+        </div>
+    </script>
+
+</div>

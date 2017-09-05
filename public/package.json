@@ -1,0 +1,23 @@
+{
+  "name": "mashaweer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://vikasbedwalclabs@bitbucket.org/vikasbedwalclabs/mashaweer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/vikasbedwalclabs/mashaweer#readme",
+  "dependencies": {
+    "angular-ckeditor": "^0.3.1",
+    "timepicker": "^1.8.9"
+  },
+  "devDependencies": {
+    "@angular/cli": "^1.2.4"
+  }
+}

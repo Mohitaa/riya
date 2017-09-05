@@ -1,0 +1,186 @@
+<style>
+    .glyphicon {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .glyphicon-calendar:before {
+        content: "\e109";
+    }
+</style>
+<div class="row" ng-controller="addHospitalController">
+    <div class="col-lg-12">
+        <form method="post" validate-form="" novalidate="" ng-submit="add_hospital_function(hospital)">
+
+            <!-- START panel-->
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-heading">
+                    <div class="panel-title "><h3><b>Add Consultant Details</b></h3></div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="form-group " >
+                            <div class="col-lg-3 col-md-3 col-sm-3 form-group" style="padding-top: 25px;">
+                                <label class="control-label">Consultant Photo<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-9 form-group" style="padding-top: 25px;">
+                                <div class="fileUpload btn btn-info">
+                                    <span>Upload</span>
+                                    <input filestyle="" type="file" accept="image/*" image="image"
+                                           onchange="angular.element(this).scope().file_to_upload(this.files)"
+                                           data-button-text="Single" data-class-button="btn btn-info"
+                                           data-classinput="form-control inline" nv-file-select=""
+                                           uploader="uploader" class="form-control upload"/>
+                                </div>
+                                <br>
+                                <span>{{pic_name}}</span>
+                                <br>
+                                <span class="portfolio">
+                                     <a target="_self" href="{{hospital.pic}}" download="{{pic_name}}"
+                                        title="Vehicle Image">
+                                    <img src="app/img/noimg.png" width="200" id="hospitalPic">
+                                         </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-lg-3 col-md-3 col-sm-3 form-group">
+                                <label class="control-label">Consultant Name<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-9 form-group">
+                                <input type="text" name="hospital-name" required="required" class="form-control"
+                                       ng-model="hospital.name" placeholder="Consultat Name"
+                                       onkeypress="javascript:return IsAlphaNumeric(event)"
+                                       data-parsley-pattern="/^[a-zA-Z0-9\-\s]+$/"/>
+                            </div>
+                        </div>
+                        <br>
+                       
+                        <br>
+                        <br>
+       
+    
+
+
+      
+                        <div class="form-group ">
+                            <div class="col-lg-3 col-md-3 col-sm-3 form-group">
+                                <label class="control-label">Address<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-9 col-md-9 col-sm-9 form-group">
+                                <input type="text" name="address" required="required" class="form-control"
+                                       placeholder="Search location" id="autocomplete"/>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-lg-3 col-md-3 col-sm-3 form-group"></div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 form-group">
+                                &nbsp;&nbsp;&nbsp;City<span class="astrick">*</span>
+                                <input type="text" name="city" required="required" class="form-control"
+                                       placeholder="City" id="locality"
+                                       onkeypress="javascript:return alphaOnly(event)"/>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 form-group">
+                                &nbsp;&nbsp;&nbsp;State<span class="astrick">*</span>
+                                <input type="text" name="state" required="required" class="form-control"
+                                       placeholder="State" id="administrative_area_level_1"
+                                       onkeypress="javascript:return alphaOnly(event)"/>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-lg-3 col-md-3 col-sm-3 form-group"></div>
+                            <div class="col-lg-5 col-md-5 col-sm-5 form-group">
+                                &nbsp;&nbsp;&nbsp;Country<span class="astrick">*</span>
+                                <input type="text" name="country" required="required" class="form-control"
+                                       placeholder="Country" id="country"
+                                       onkeypress="javascript:return alphaOnly(event)"/>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 form-group">
+                                &nbsp;&nbsp;&nbsp;Pin Code<span class="astrick">*</span>
+                                <input type="text" name="pin" required="required" class="form-control"
+                                       data-parsley-maxlength="6" data-parsley-minlength="6"
+                                       placeholder="Pin Code" id="postal_code"
+                                       onkeypress="javascript:return isNumber(event)"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="col-lg-4 col-sm-4 col-md-4"></div>
+                    <div>
+                        <button type="submit" class="btn btn-info">Add Consultant</button>
+                        <button type="button" ui-sref="app.hospital" class="btn btn-info">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <!-- END panel-->
+            <div class="col-lg-12">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6" style=' margin: auto;'>
+                    <div ng-show="hospital.successMsg" class="alert alert-success text-center">{{hospital.successMsg}}
+                    </div>
+                    <div ng-show="hospital.errorMsg" class="alert alert-danger text-center">{{hospital.errorMsg}}</div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- **************************************************************************
+    ******************* Modal to display msg **************************************
+    *******************************************************************************-->
+
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-info" style="margin-top:20px;float:right;">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+    <script>
+        function alphaOnly(event) {
+            var key = event.keyCode;
+            return ((key >= 65 && key <= 90) || key == 8 || key == 9 || key == 32);
+        }
+    </script>
+
+    <script type="text/javascript">
+        var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+        //        specialKeys.push(9); //Tab
+        specialKeys.push(46); //Delete
+        specialKeys.push(36); //Home
+        specialKeys.push(35); //End
+        specialKeys.push(37); //Left
+        specialKeys.push(39); //Right
+        function IsAlphaNumeric(e) {
+            var keyCode = e.keyCode == 0 ? e.charCode : e.keyCode;
+            var ret = (((keyCode == 32)) || (keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (specialKeys.indexOf(e.keyCode) != -1 && e.charCode != e.keyCode));
+
+            return ret;
+        }
+    </script>
+    <script>
+        function isNumber(evt) {
+            var iKeyCode = (evt.which) ? evt.which : evt.keyCode;
+            if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+    <script>
+        function check_number(event) {
+            if (!(event.charCode > 47 && event.charCode < 58) && event.charCode && !(event.metaKey || event.ctrlKey))
+                event.preventDefault();
+        }
+    </script>
+</div>

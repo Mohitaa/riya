@@ -1,0 +1,67 @@
+[
+  {
+    "text": "Main Navigation",
+    "heading": "true"
+  },
+  {
+    "text": "Home",
+    "sref": "app.home",
+    "icon": "fa fa-tachometer"
+  },
+  {
+    "text": "Consultant Info",
+    "icon": "fa fa-list",
+    "submenu":[
+      {
+        "text": "Consultant Categories",
+        "sref": "app.consultant"
+      },
+      {
+        "text": "List Of Consultant",
+        "sref": "app.listconsultant"
+      },
+      {
+        "text": "Add Consultant",
+        "sref": "app.registerConsultant"
+      }
+    ]
+  },
+    {
+    "text": "Plan",
+    "icon": "fa fa-user",
+    "submenu":[
+      {
+        "text": "List Of Plans",
+        "sref": "app.listplan"
+      },
+      {
+        "text": "Add Plan",
+        "sref": "app.addplan"
+      }
+    ]
+  },
+  {
+    "text": "User Info",
+    "icon": "fa fa-user",
+    "submenu":[
+      {
+        "text": "Users Categories",
+        "sref": "app.user"
+      },
+      {
+        "text": "List Of Users",
+        "sref": "app.listuser"
+      }
+    ]
+  },
+  {
+    "text": "View Image",
+    "sref": "app.user",
+    "icon": "fa fa-heartbeat"
+  },
+  {
+    "text": "Promo Codes",
+    "sref": "app.promo",
+    "icon": "fa fa-database"
+  }
+]

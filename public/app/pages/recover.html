@@ -1,0 +1,33 @@
+<div class="block-center mt-xl wd-xl" ng-controller="LoginController">
+   <!-- START panel-->
+   <div class="panel panel-dark panel-flat" style="    background-color: #3a7988;">
+      <div style="width: 320px;padding:20px;background: #7dd1ed ;margin-top: auto">
+         <img src="app/img/logo.png" alt="Image" class="block-center logo-div"/>
+      </div>
+      <div class="panel-body">
+         <p class="text-center pv" style="    border-bottom-color: crimson;border: 5px; color: white; font-family: sans-serif; font-size: large;">PASSWORD RESET</p>
+         <form role="form" ng-submit="recover()" validate-form="" novalidate="" class="mb-lg">
+            <!--<p class="text-center" style="color: cadetblue;font-size: medium; ">Enter you email to receive instructions on how to reset your password.</p>-->
+            <div class="form-group has-feedback">
+               <label for="resetInputEmail1" class="text-muted" style="color: white;">Email address</label>
+               <input id="resetInputEmail1" type="email" placeholder="Enter email" class="form-control" ng-model="account.email" required="required"/>
+               <span class="fa fa-envelope form-control-feedback text-muted"></span>
+            </div>
+            <button type="submit" style=" width: 100% !important;" class="btn btn-danger btn-block">Reset</button>
+         </form>
+          <div ng-show="errorMsg" class="alert alert-danger text-center">{{errorMsg}}</div>
+          <div ng-show="successMsg" class="alert alert-success text-center">{{successMsg}}</div>
+
+          <span class="label label-account" style="color:black;width: 100% !important;"><a ui-sref="page.login" class="btn btn-block btn-default">Back to Login</a> </span>
+      </div>
+   </div>
+   <!-- END panel-->
+   <div class="p-lg text-center">
+      <span>&copy;</span>
+      <span ng-bind="app.year"></span>
+      <span>-</span>
+      <span ng-bind="app.name"></span>
+      <br/>
+      <span ng-bind="app.description"></span>
+   </div>
+</div>

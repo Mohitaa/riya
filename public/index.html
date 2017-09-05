@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="AppName">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="app/img/favicon.ico"/>
+    <meta name="description" content="{{app.description}}">
+   <title data-ng-bind="pageTitle()">Detox</title>
+   <link rel="stylesheet" href="app/css/app.css">
+   <link rel="stylesheet" href="app/css/custom-style.css">
+   <link rel="stylesheet" href="vendor/internationalphoneList/intlTelInput.css">
+   <link rel="stylesheet" href="vendor/datetimepicker/jquery.datetimepicker.css">
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="node_modules/timepicker/jquery.timepicker.min.css">
+   <link rel="stylesheet" href="vendor/intl-tel-input-9.2.0/build/css/intlTelInput.css">
+   <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="app/css/united.css">
+    <link rel="stylesheet" href="app/css/app.css" >
+    <link rel="stylesheet" href="vendor/AngularJS-Toaster/toaster.min.css" >
+    <link rel="stylesheet" href="vendor/bootstrap-additions/dist/bootstrap-additions.css">
+    <link rel="stylesheet" href="app/css/angularStrap-modal-animation.css">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    
+
+    <!--<script type="text/javascript" src="libs/angular/angular.js"></script>-->
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link href="app/css/style.css" rel='stylesheet' type='text/css' />
+      <link href="app/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+  <link href="app/css/font-awesome.css" rel="stylesheet"> 
+  <link rel="stylesheet" href="app/css/icon-font.min.css" type='text/css' />
+  <link href="app/css/animate.css" rel="stylesheet" type="text/css" media="all">
+  
+   <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+  <script src="libs/js/jquery-1.10.2.min.js"></script>
+  <script src="libs/js/wow.min.js"></script>
+  <script src="libs/js/Chart.js"></script>
+   <link href="app/css/simple-sidebar.css" rel="stylesheet">
+</head>
+
+<body data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed, 'layout-fs': app.useFullLayout, 'hidden-footer': app.hiddenFooter, 'layout-h': app.layout.horizontal, 'aside-float': app.layout.isFloat}">
+   <div data-ui-view="" data-autoscroll="false" class="wrapper"></div>
+   <script src="app/js/base.js"></script>
+   <script src="app/js/app.js"></script>
+   <script src="app/js/myApp.js"></script>
+   <script src="app/js/controllers/login-ctrl.js"></script>
+   <script src="app/js/controllers/home-ctrl.js"></script>
+    <script src="app/js/controllers/consultant-ctrl.js"></script>
+    <script src="app/js/controllers/addplan-ctrl.js"></script>
+    <script src="app/js/controllers/listplan-ctrl.js"></script>
+    <script src="app/js/controllers/registerConsultant-ctrl.js"></script>
+    <script src="app/js/controllers/commonMethod.js"></script>
+    <script src="app/js/controllers/listconsultant-ctrl.js"></script>
+    <script src="app/js/controllers/viewconsultant-ctrl.js"></script>
+   <script src="app/js/controllers/viewuser-ctrl.js"></script>
+    <script src="app/js/controllers/addpromo-ctrl.js"></script>
+    <script src="app/js/controllers/promo-ctrl.js"></script>
+    <script src="app/js/controllers/reset-password-ctrl.js"></script>
+     <script src="app/js/controllers/listuser-ctrl.js"></script>
+       <script src="app/js/controllers/viewUser-ctrl.js"></script>
+      <script src="app/js/controllers/edituser-ctrl.js"></script>
+   <script src="app/js/moment.js"></script>
+   <script src="vendor/export/alasql.min.js"></script>
+   <script src="vendor/angular-google-maps/angular-google-maps.min.js"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3Dxcb4bauGQs9KuEjAvpghdl0BW5--3E&v=3.exp&libraries=places"></script>
+   <script src="vendor/angular-google-maps/lodash.min.js"></script>
+   <script src="vendor/datetimepicker/jquery.datetimepicker.js"></script>
+   <script src="vendor/internationalphoneList/intlTelinput.js"></script>
+   <script src="vendor/angular-google-maps/lodash.min.js"></script>
+   <!--<script src='http://maps.googleapis.com/maps/api/js?v=3&sensor=false&amp;libraries=places'></script>-->
+   <script src="vendor/marker/markerclusterer.js"></script>
+   <script src="vendor/marker/markerwithLabel.js"></script>
+   <script src="vendor/stripe/stripe-angular.js"></script>
+   <script src="vendor/ngMask/ngMask.min.js"></script>
+   <script src="app/js/flot.js"></script>
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="https://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script>
+   <script src="node_modules/angular-ckeditor/angular-ckeditor.js"></script>
+   <script src="node_modules/timepicker/jquery.timepicker.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap-tpls.min.js"></script>
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+   <script src="https://code.highcharts.com/modules/exporting.js"></script>
+   <script src="vendor/intl-tel-input-9.2.0/build/js/intlTelInput.js"></script>
+
+</body>
+
+</html>

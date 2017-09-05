@@ -1,0 +1,68 @@
+			<div id="page-wrapper" ng-controller="addPlanController">
+				<div class="graphs">
+					<h3 class="blank1">Add Plan</h3>
+					 <div class="xs tabls">
+						<div class="tab-content">
+						<div class="tab-pane active" id="horizontal-form">
+							<form class="form-horizontal" ng-submit="submit(addAdmin)" name ="myForm" method="post" validate-form="" novalidate="" id="add-admin">
+								<div class="form-group col-md-6">
+									<label class="control-label">Plan Name</label>
+									
+										<input type="text" class="form-control1" name="PlanName"  ng-model="addAdmin.name" placeholder="Enter Plan Name">
+									
+								</div>
+								<div class="form-group col-md-6">
+									<label for="focusedinput" class="control-label">Select Plan Categoies</label>
+									<select class="form-control1" name="PlanCategoies" ng-model="addAdmin.category" >
+                                    	<option value="Silver" readonly>Select Highest Plan Categoies</option>
+                                        <option value="Silver">Silver</option>
+                                        <option value="Gold">Gold</option>
+                                        <option value="Platinim">Platinium </option>
+                                    </select>
+								</div>
+                                
+                    
+                                
+                                <div class="form-group col-md-6">
+									<label class="control-label">Price Of Plan</label>
+									<input type="text" class="form-control1"required="required"  name="PiceOfPlan" ng-model="addAdmin.price" placeholder="Enter Price Of Plan">
+										
+									
+								</div>
+								                                <div class="form-group col-md-6">
+									<label class="control-label">Duration</label>
+									<input type="text" class="form-control1" required="required"  name="duration" ng-model="addAdmin.duration" placeholder="Duration">
+										
+									
+								</div>
+								<!--<div class="form-group">
+									<label for="focusedinput" class="col-sm-2 control-label">Consultant Number</label>
+									<div class="col-sm-8">
+										<input type="mail" class="form-control1" name="ConsultantNumber" placeholder="Enter Consultant Number">
+									</div>
+								</div>-->	
+								
+								
+								   <div class="form-group col-md-12">
+									<label for="focusedinput" class="control-label">Services Provided</label>
+										<textarea class="form-control" rows="5" name="service" ng-model="addAdmin.services" placeholder="Enter Sevices Provided"></textarea>
+								</div>
+								<div class="form-group">
+									<div class="col-md-12" align="right">
+										<button type="submit" class="btn btn-info" >Add Plan</button>
+									</div>
+								</div>
+								
+							</form>
+							 <div ng-show="addAdmin.successMsg" class="alert alert-success text-center">{{addAdmin.successMsg}}</div>
+                    <div ng-show="addAdmin.errorMsg" class="alert alert-danger text-center">{{addAdmin.errorMsg}}</div>
+						</div>
+					</div><!-- /.table-responsive -->
+						</div>
+
+
+
+
+					</div>
+				
+			</div>

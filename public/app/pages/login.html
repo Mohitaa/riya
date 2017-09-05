@@ -1,0 +1,80 @@
+<!--<div ng-controller="LoginController" class="block-center mt-xl wd-xl">
+    <!-- START panel
+    <div class="panel panel-dark panel-flat panel-login" style="margin-bottom: 30px">
+<div class="panel" style="margin-top: auto">
+    <img src="app/img/logo.png" alt="Image" class="logo-div" height="100%" style="background-color: #7dd1ed ;padding:30px"/>
+</div>
+        <div class="panel-body">
+            <form role="form" validate-form="" novalidate="" class="mb-lg" name="loginForm" ng-submit="loginAdmin()">
+                <div class="form-group has-feedback">
+                    <input id="exampleInputEmail1" type="email" placeholder="Enter email"
+                           ng-model="account.email" required="required" class="form-control"/>
+                    <span class="fa fa-envelope form-control-feedback text-muted"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input id="exampleInputPassword1" type="password" placeholder="Password" ng-model="account.password"
+                           required="required" class="form-control" ng-minlength="5"/>
+                    <span class="fa fa-lock form-control-feedback text-muted"></span>
+                </div>
+                <div class="checkbox c-checkbox pull-left mt0">
+                    <label style="color:black">
+                        <input type="checkbox" value="" name="remember" ng-model="account.remember" />
+                        <span class="fa fa-check"></span>Remember Me</label>
+                </div>
+
+                <div class="pull-right"><a ui-sref="page.recover" class="text-muted">Forgot your password?</a>
+                </div>
+                <br>
+
+                <button type="submit" class="btn btn-block btn-primary mt-lg login_btn">Login</button>
+            </form>
+            <div ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</div>
+        </div>
+    </div>
+    <!-- END panel
+</div>-->
+<div class="sign-in-up" ng-controller="LoginController" >
+    <section>
+			<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-in-form">
+						<div class="sign-in-form-top">
+							<p><span>Sign In to</span> Admin</a></p>
+						</div>
+						<div class="signin">
+							<div class="signin-rit">								
+								<div class="clearfix"> </div>
+							</div>
+							<form role="form" validate-form="" novalidate="" class="mb-lg" name="loginForm" ng-submit="loginAdmin()"  >
+							<div class="log-input">
+								<div class="log-input-center">
+								   <input type="text" placeholder="Enter your email"  autocomplete="on" ng-model="account.email" class="user" value="" required="required"/>
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+							<div class="log-input">
+								<div class="log-input-center">
+								   <input type="password"  placeholder="Enter password" ng-model="account.password" required="required" class="lock" value="" />
+								</div>
+								<div class="clearfix"> </div>
+							</div>
+                            
+							<input type="submit" value="Login to your account">
+                            
+						</form>	
+                        				
+					        <h5 align="center"> <a ui-sref="page.recover">forgot password</a></h5>
+				           
+
+					<h4 align="center" ng-show="authMsg" class="alert alert-danger text-center">{{authMsg}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+            			<footer>
+			   <p>&copy 2015 Easy Admin Panel. All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">Detox.</a></p>
+			</footer>
+    </section>
+</div>
+
+

@@ -1,0 +1,49 @@
+<!-- Inline template with sidebar items markup and ng-directives-->
+<script type="text/ng-template" id="sidebar-renderer.html">
+    <span ng-if="item.heading">{{(item.translate | translate) || item.text}}</span>
+    <a ng-if="!item.heading" ng-href="{{$state.href(item.sref, item.params)}}" title="{{item.text}}">
+        <em ng-hide="inSubmenu" class="{{item.icon}}"></em>
+        <div ng-if="item.alert" class="label label-success pull-right">{{item.alert}}</div>
+        <span>{{(item.translate | translate) || item.text}}</span></a>
+    <ul ng-if="item.submenu" collapse="isCollapse(pIndex)" ng-init="addCollapse(pIndex, item)" class="nav sidebar-subnav">
+        <li class="sidebar-subnav-header">{{(item.translate | translate) || item.text}}</li>
+        <li ng-repeat="item in item.submenu" ng-include="'sidebar-renderer.html'" ng-class="getMenuItemPropClasses(item)" ng-init="pIndex=(pIndex+'-'+$index); inSubmenu = true"
+            ng-click="toggleCollapse(pIndex)"></li>
+    </ul>
+</script>
+
+<!--logo and iconic logo start-->
+
+<!--logo and iconic logo end-->
+<div class="left-side-inner">
+
+    <!--&lt;!&ndash;sidebar nav start&ndash;&gt;-->
+    <!--<ul class="nav nav-pills nav-stacked custom-nav">-->
+        <!--<li ng-class="{active: isActive('#!/dashboard')}"><a href="#!/dashboard"><i class="fa fa-power-off"></i><span>Dashboard</span></a></li>-->
+        <!--<li ng-class="{active: isActive('#!/RegisterUser')}"><a href="#!/RegisterUser"><i class="fa fa-users"></i><span>Register Users</span></a></li>-->
+        <!--<li class="menu-list">-->
+            <!--<a href="#"><i class="fa fa-user"></i>-->
+                <!--<span>Consultant Info</span></a>-->
+            <!--<ul class="sub-menu-list">-->
+                <!--<li><a href="">Consultant Categories</a></li>-->
+                <!--<li><a href="ListOfConsultant.html">List Of Consultant</a> </li>-->
+                <!--<li><a href="AddConsultant.html">Add Consultant</a></li>-->
+            <!--</ul>-->
+        <!--</li>-->
+        <!--<li class="menu-list">-->
+            <!--<a href="#"><i class="fa fa-pencil-square-o"></i>-->
+                <!--<span>Plan</span></a>-->
+            <!--<ul class="sub-menu-list">-->
+                <!--<li><a href="PlanCategoriesList.html">Plan Categories</a></li>-->
+                <!--<li><a href="PlanList.html">List Of Plans</a> </li>-->
+                <!--<li><a href="AddPlan.html">Add Plan</a></li>-->
+            <!--</ul>-->
+        <!--</li>-->
+        <!--<li><a href="UserHealth.html"><i class="fa fa-heartbeat"></i><span>User Health</span></a></li>-->
+    <!--</ul>-->
+    <ul class="nav nav-pills nav-stacked custom-nav">
+        <!-- Iterates over all sidebar items-->
+        <li class="menu-list" ng-class="getMenuItemPropClasses(item)" ng-repeat="item in menuItems" ng-init="pIndex = $index" ng-include="'sidebar-renderer.html'" ng-click="toggleCollapse(pIndex, true)"></li>
+    </ul>
+    <!--sidebar nav end-->
+</div>

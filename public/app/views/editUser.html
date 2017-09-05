@@ -1,0 +1,237 @@
+<style>
+    .glyphicon {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .glyphicon-calendar:before {
+        content: "\e109";
+    }
+</style>
+<h3>
+    Edit User
+    <small></small>
+</h3>
+<div class="row" ng-controller="viewUserController">
+    <div class="col-lg-12">
+            <form id="div2" method="post" name="userForm"  novalidate="" ng-submit="submit=true;userForm.$valid && approveuserFunction(approveuser)">
+            <!-- START panel-->
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-body">
+                    <div id="panelPortlet13" class="panel panel-theme">
+                        <div class="panel-heading">User Details</div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                     <div class="form-group ">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">User-id<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>user id</label>
+                                <md-icon class="name fa fa-user fa-2x" style="color:coral"></md-icon>
+                                <input  type="user_id"  required="required" name="user_id" disabled ng-model="approveuser.user_id" style="color:#333333" >
+                                
+                            </md-input-container>
+                                </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">User Name<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>User Name</label>
+                                <md-icon class="name fa fa-user fa-2x" style="color:coral"></md-icon>
+                                <input  type="text" name="userName" ng-model="approveuser.user_name"  onkeydown="return alphaOnly(event)"
+                                       required="required" >
+                             
+                            </md-input-container>
+                           </div>
+
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">user Email-id<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                            <md-input-container class="md-icon-float md-block">
+                                <label>user Email-id</label>
+                                <md-icon class="name fa fa-envelope fa-2x" style="color:coral"></md-icon>
+                                <input  type="email" required="required" name="userEmail" disabled ng-model="approveuser.user_email" style="color:#333333" 
+                                        >
+                                
+                            </md-input-container>
+                                </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">Mobile Number<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                    <md-input-container class="md-icon-float md-block">
+                                        <label>Mobile Number </label>
+                                        <input   type="text"  name="userNumber" ng-model="approveuser.phn_no" required="required" style="color:#333333" onkeypress="javascript:return check_number(event)" 
+                                                 >
+                                        
+                                    </md-input-container>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">Select Consultant<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                    <md-input-container class="md-icon-float md-block">
+                                        <label>Consultant </label>
+                                         <select  name="listConsutant"  required="required"  ng-model="approveuser.listConsutant" style="color:#333333" ng-options="listConsutant  for listConsutant  in listConsutant " >
+                                             <option value="">Select All Consultant</option>
+                                         
+                                         </select>
+                                       
+                                    </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of left div -->
+                    
+                    <div class="col-lg-6">
+                        <div class="form-group" >
+                            <label class="control-label">user Image<span class="astrick">*</span></label>
+                            <div class="fileUpload btn btn-info" style="margin-left: 15px;">
+                                <span>Upload</span>
+                                <input filestyle="" type="file" accept="image/*" image="image" onchange="angular.element(this).scope().file_to_upload(this.files,0)" data-button-text="Single" data-class-button="btn btn-default" data-classinput="form-control inline" nv-file-select="" uploader="uploader" class="form-control upload"/>
+                            </div><br>
+                            <span>{{user_image_name}}</span>
+                            <br>
+                           <img  ng-src="{{user_image}} " id="user_image" style="width:300px;height:300px;margin-left: 120px;" ng-click="openIframe(user_image,1)">
+                        </div>
+                    </div>
+                    <!-- end of right div -->
+                </div>
+           
+
+
+                <div class="panel-footer" style="text-align:center">
+                    <button type="submit" class="btn btn-info">Submit</button>
+                    <button type="button"  ui-sref="app.listuser" class="btn btn-info">Cancel</button>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="col-lg-3"></div>
+                <div class="col-lg-6" style=' margin: auto;'>
+
+                    <div ng-show="successMsg" class="alert alert-success text-center" style="margin-top: 10px;">{{successMsg}}</div>
+                    <div ng-show="errorMsg" class="alert alert-danger text-center" style="margin-top: 10px;">{{errorMsg}}</div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- ***************************************************************************
+        ******************* Modal zoomed images**************************************
+        ***************************************************************************-->
+    <script type="text/ng-template" id="pdf_large_dialog">
+        <div class="ngdialog-message">
+            <div class="panel-start">
+                <button type="button" class="pull-right" style="margin-top: 11px;margin-right: 12px;" ng-click="closeThisDialog(0)">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <div ng-if="showServiceImage==true" class="panel-heading" style="font-size: large;color:#656565;text-align: center">
+                    <span style="padding-top:10px;color:#ffffff"><b>{{Title}}</b></span>
+                </div>
+                <div ng-if="showInsuarnceImage1==true" class="panel-heading" style="font-size: large;color:#656565;text-align: center">
+                    <span style="padding-top:10px;color:#ffffff"><b>{{Title}}</b></span>
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-class="{'whirl duo' : pdfLoader} ">
+                <div ng-if="showServiceImage==true">
+                    <div style="margin:14px">
+                        <span><a target="_self" href="{{image_large}}" download="{{image_large}}"><img src="app/img/group-13@2x.png" style="width: 20px;height: 20px;margin-bottom: 1px"></a></span>
+                        <span class="orangeHover" style="margin-left:10px"><b>Download</b></span>
+                    </div>
+                    <div style="margin:14px">
+                        <img src="{{image_large}}" frameborder="0" style="width:100%;height:100%">
+                    </div>
+                </div>
+                <div ng-if="showInsuarnceImage1==true">
+                    <div style="margin:14px">
+                        <span><a target="_self" href="{{insurance_large}}" download="{{insurance_large}}"><img src="app/img/group-13@2x.png" style="width: 20px;height: 20px;margin-bottom: 1px"></a></span>
+                        <span class="orangeHover" style="margin-left:10px"><b>Download</b></span>
+                    </div>
+                    <div style="margin:14px">
+                        <img src="{{insurance_large}}" frameborder="0" style="width:100%;height:100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+******************* Modal to display msg **************************************
+*******************************************************************************-->
+
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;float:right;">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+    <script>
+
+    </script>
+    <script>
+        function alphaOnly(event) {
+            var key = event.keyCode;
+            return ((key >= 65 && key <= 90) || key == 8 || key == 9 ||key ==32);
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+        //        specialKeys.push(9); //Tab
+        specialKeys.push(46); //Delete
+        specialKeys.push(36); //Home
+        specialKeys.push(35); //End
+        specialKeys.push(37); //Left
+        specialKeys.push(39); //Right
+        function IsAlphaNumeric(e) {
+            var keyCode = e.keyCode == 0 ? e.charCode : e.keyCode;
+            var ret = ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (specialKeys.indexOf(e.keyCode) != -1 && e.charCode != e.keyCode));
+
+            return ret;
+        }
+    </script>
+    <script>
+        function isNumber(evt) {
+            var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+            if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+    <script>
+        function check_number(event) {
+            if(!(event.charCode>47 && event.charCode<58) && event.charCode && !(event.metaKey || event.ctrlKey))
+                event.preventDefault();
+        }
+    </script>
+</div>

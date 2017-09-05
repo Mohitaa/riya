@@ -1,0 +1,12 @@
+[
+  {
+    "text": "Main Navigation",
+    "heading": "true"
+  },
+  {
+    "text": "Home",
+    "sref": "app.home",
+    "icon": "fa fa-tachometer"
+  }
+
+]

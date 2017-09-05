@@ -1,0 +1,252 @@
+<style>
+    .glyphicon {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings';
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .glyphicon-calendar:before {
+        content: "\e109";
+    }
+</style>
+<h3>
+    <buttton class="btn btn-info" type="button" style="position: absolute;" ui-sref="app.listuser"><i class="fa fa-arrow-left" aria-hidden="true"></i></buttton>
+    <div class="text-center"><u>View User Details</u></div>
+</h3>
+<div class="row" ng-controller="viewUserController">
+    <div class="col-lg-12">
+            <!-- START panel-->
+            <div class="panel panel-default" ng-class="{'whirl duo' : showloader }">
+                <div class="panel-body">
+                    <div id="panelPortlet13" class="panel panel-theme">
+                        <div class="panel-heading">User Details</div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">User Name<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <md-input-container class="md-icon-float md-block">
+                                    <label>User Name</label>
+                                    <md-icon class="name fa fa-user fa-2x" style="color:coral"></md-icon>
+                                    <input  class="offmode" type="text" name="userName" ng-model="approveuser.user_name"  onkeydown="return alphaOnly(event)"
+                                            required="required" ng-class="{ 'has-error': userForm.userName.$touched && userForm.userName.$invalid }">
+                                    <div ng-if="userForm.userName.$touched||submit" ng-messages="userForm.userName.$error" disabled>
+                                        <p class="errormessage text-danger" ng-message="required">Please enter the user Name
+                                        </p>
+                                    </div>
+                                </md-input-container>
+                            </div>
+
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">User Email-id<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <md-input-container class="md-icon-float md-block">
+                                    <label>User Email-id</label>
+                                    <md-icon class="name fa fa-envelope fa-2x" style="color:coral"></md-icon>
+                                    <input  class="offmode" type="email" required="required" name="userEmail"  ng-model="approveuser.user_email" style="color:#333333" disabled
+                                            ng-class="{ 'has-error': userForm.userEmail.$touched && userForm.userEmail.$invalid }">
+                                    <div ng-if="userForm.userEmail.$touched||submit" ng-messages="userForm.userEmail.$error" disabled>
+                                        <p class="errormessage text-danger" ng-message="required">Please enter the user Email-id
+                                        </p>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">Mobile Number<span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <md-input-container class="md-icon-float md-block">
+                                    <label>Mobile Number </label>
+                                    <input  class="offmode"  type="text"  name="userNumber" ng-model="approveuser.phn_no" required="required" style="color:#333333" onkeypress="javascript:return check_number(event)" disabled
+                                             ng-class="{ 'has-error': userForm.userNumber.$touched && userForm.userNumber.$invalid }">
+                                    <div ng-if="userForm.userNumber.$touched||submit" ng-messages="userForm.userNumber.$error" disabled>
+                                        <p class="errormessage text-danger" ng-message="required">Please enter the Mobile Number
+                                        </p>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">Align with  <span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <md-input-container class="md-icon-float md-block">
+                                    <label>Consultant  </label>
+                                    <input  class="offmode"  type="text"  name="consultant" ng-model="approveuser.consultant" required="required" style="color:#333333" onkeypress="javascript:return check_number(event)" disabled
+                                             ng-class="{ 'has-error': userForm.consultant.$touched && userForm.consultant.$invalid }">
+                                    <div ng-if="userForm.consultant.$touched||submit" ng-messages="userForm.consultant.$error" disabled>
+                                        <p class="errormessage text-danger" ng-message="required">Please enter the Consultant name 
+                                        </p>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                <label class="control-label">Id of Consultant  <span class="astrick">*</span></label>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 form-group">
+                                 <label>Id of Consultant </label>
+                                <md-input-container class="md-icon-float md-block">
+                                   
+                                    <input  class="offmode"  type="text"  name="ids" ng-model="approveuser.ids" required="required" style="color:#333333" onkeypress="javascript:return check_number(event)" disabled
+                                             ng-class="{ 'has-error': userForm.ids.$touched && userForm.ids.$invalid }">
+                                    <div ng-if="userForm.ids.$touched||submit" ng-messages="userForm.ids.$error" disabled>
+                                        <p class="errormessage text-danger" ng-message="required">Please enter the Id 
+                                        </p>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of left div -->
+
+                    <div class="col-lg-6">
+                        <div class="form-group" style="text-align: center">
+                            <label class="control-label">user Image<span class="astrick">*</span></label>
+                            <br>
+                            <img  ng-src="{{user_image}} " id="user_image" style="width:300px;height:300px" ng-click="openIframe(user_image,1)">
+                        </div>
+                    </div>
+                    <!-- end of right div -->
+                </div>
+                <div class="panel-body">
+                    <div  class="panel panel-theme">
+                        <div class="panel-heading">Other Details</div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                        <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                            <div class="form-group">
+
+                            </div>
+                  
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+    </div>
+
+    <!-- ***************************************************************************
+        ******************* Modal zoomed images**************************************
+        ***************************************************************************-->
+    <script type="text/ng-template" id="pdf_large_dialog">
+        <div class="ngdialog-message">
+            <div class="panel-start">
+                <button type="button" class="pull-right" style="margin-top: 11px;margin-right: 12px;" ng-click="closeThisDialog(0)">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <div ng-if="showServiceImage==true" class="panel-heading" style="font-size: large;color:#656565;text-align: center">
+                    <span style="padding-top:10px;color:#ffffff"><b>{{Title}}</b></span>
+                </div>
+                <div ng-if="showInsuarnceImage1==true" class="panel-heading" style="font-size: large;color:#656565;text-align: center">
+                    <span style="padding-top:10px;color:#ffffff"><b>{{Title}}</b></span>
+                </div>
+            </div>
+
+            <div class="panel panel-default" ng-class="{'whirl duo' : pdfLoader} ">
+                <div ng-if="showServiceImage==true">
+                    <div style="margin:14px">
+                        <span><a target="_self" href="{{image_large}}" download="{{image_large}}"><img src="app/img/group-13@2x.png" style="width: 20px;height: 20px;margin-bottom: 1px"></a></span>
+                        <span class="orangeHover" style="margin-left:10px"><b>Download</b></span>
+                    </div>
+                    <div style="margin:14px">
+                        <img src="{{image_large}}" frameborder="0" style="width:100%;height:100%">
+                    </div>
+                </div>
+                <div ng-if="showInsuarnceImage1==true">
+                    <div style="margin:14px">
+                        <span><a target="_self" href="{{insurance_large}}" download="{{insurance_large}}"><img src="app/img/group-13@2x.png" style="width: 20px;height: 20px;margin-bottom: 1px"></a></span>
+                        <span class="orangeHover" style="margin-left:10px"><b>Download</b></span>
+                    </div>
+                    <div style="margin:14px">
+                        <img src="{{insurance_large}}" frameborder="0" style="width:100%;height:100%">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <!-- **************************************************************************
+******************* Modal to display msg **************************************
+*******************************************************************************-->
+
+    <script type="text/ng-template" id="display_msg_modalDialog">
+        <div class="ngdialog-message">
+            <h4>{{displaymsg}}</h4>
+            <a type="submit" ng-click="refreshPage()" class="btn btn-primary" style="margin-top:20px;float:right;">OK</a>
+            <div style="clear: both;"></div>
+        </div>
+    </script>
+    <!--<script>
+        $('#license_expiry').datepicker({
+            format : 'mm/yy',
+            viewMode: "years",
+            minViewMode: "months",
+            autoclose: true,
+            startDate:new Date()
+        });
+        $('#license_expiry').change(function(){
+            $(this).removeClass("parsley-error");
+            var a = $(this).addClass("parsley-success");
+            a.siblings("ul").removeClass("filled");
+        });
+    </script>-->
+    <script>
+        function alphaOnly(event) {
+            var key = event.keyCode;
+            return ((key >= 65 && key <= 90) || key == 8 || key == 9 ||key ==32);
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        var specialKeys = new Array();
+        specialKeys.push(8); //Backspace
+        //        specialKeys.push(9); //Tab
+        specialKeys.push(46); //Delete
+        specialKeys.push(36); //Home
+        specialKeys.push(35); //End
+        specialKeys.push(37); //Left
+        specialKeys.push(39); //Right
+        function IsAlphaNumeric(e) {
+            var keyCode = e.keyCode == 0 ? e.charCode : e.keyCode;
+            var ret = ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122) || (specialKeys.indexOf(e.keyCode) != -1 && e.charCode != e.keyCode));
+
+            return ret;
+        }
+    </script>
+    <script>
+        function isNumber(evt) {
+            var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+            if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+                return false;
+            return true;
+        }
+    </script>
+    <script>
+        function check_number(event) {
+            if(!(event.charCode>47 && event.charCode<58) && event.charCode && !(event.metaKey || event.ctrlKey))
+                event.preventDefault();
+        }
+    </script>
+</div>

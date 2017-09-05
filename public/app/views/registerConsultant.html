@@ -1,0 +1,209 @@
+<h3 style="margin: -40px; background-color: #e6e6e6;">
+    Add consultant
+</h3>
+<div class="row" ng-controller="addconsultantController" style="margin-top: 65px;">
+    <div class= "col-md-12">
+        <div ng-show="successMsg" class="alert alert-success text-center">{{successMsg}}</div>
+        <div ng-show="errorMsg" class="alert alert-danger text-center">{{errorMsg}}</div>
+        <div class="panel panel-default" ng-class="{'whirl standard' : loading }">
+            <form method="post" name="myForm" ng-submit="addconsultant(consultant)" validate-form="" enctype="multipart/form-data">
+                <!-- START panel-->
+                <div class="panel-body">
+
+                    <div class="form-group">
+                        <label class="control-label">First Name<span class="color_red"> *</span></label>
+                        <input type="text" name="fleetOwnerName" required="required" class="form-control" ng-model="consultant.fname" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Last Name<span class="color_red"> *</span></label>
+                        <input type="text" name="fleetOwnerName" required="required" class="form-control" ng-model="consultant.lname" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Phone Number<span class="color_red"> *</span></label>
+                        <input type="tel" id="phone" class="form-control" maxlength="10" required="required" onkeypress="return isNumber(event)">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Email<span class="color_red"> *</span></label>
+                        <input type="email" name="email" required="required" class="form-control" ng-model="consultant.email" onkeypress="return emailRegex(event)"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Password<span class="color_red"> *</span></label>
+                        <input type="password" name="password" required="required" class="form-control" ng-model="consultant.password"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Confirm Password<span class="color_red"> *</span></label>
+                        <input type="password" name="confirmPassword" required="required" class="form-control" ng-model="consultant.confirmPassword"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Consultant Type<span class="color_red"> *</span></label>
+                        <select class="form-control" ng-options="item.name as item.name for item in serviceList" ng-model="consultant.ConsultantType">
+                            <option value="" style="text-align: center">  ----------- Select a role -----------</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Address</label>
+                        <input type="text" name="address"  class="form-control" ng-model="consultant.address" onkeypress="return addressRegex(event)"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">City</label>
+                        <input type="text" name="address" class="form-control" ng-model="consultant.city" onkeypress="return addressRegex(event)"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">State</label>
+                        <input type="text" name="address" class="form-control" ng-model="consultant.state" onkeypress="return addressRegex(event)"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Postal Code</label>
+                        <input type="text" name="address" class="form-control" ng-model="consultant.pinCode" minlength="2" maxlength="5" onkeypress="return IsAlphaNumeric(event)" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Description<span class="color_red"> *</span></label>
+                        <textarea style="width:100%; height:100px;" required="required" ng-model="consultant.description" ></textarea>
+                    </div>
+                         <div class="form-group">
+                                 <label for="focusedinput" class="control-label"><strong>Work Experince</strong></label>
+                                </div>
+                                <div class="form-group">
+                                <div class="form-group col-md-3">
+									<label for="focusedinput" class="control-label">Organization</label>
+										<input type="text" class="form-control1" ng-model="consultant.company" name="company" placeholder="Enter Organization">
+								</div>
+                                <div class="form-group col-md-3">
+									<label for="focusedinput" class="control-label">Position</label>
+										<input type="text" class="form-control1" name="Position" ng-model="consultant.position" placeholder="Enter Position">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">From</label>
+										<input type="date" class="form-control1" name="from" ng-model="consultant.fromdate" placeholder="Enter Consultant Email">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">To</label>
+										<input type="date" class="form-control1" name="to" ng-model="consultant.todate" placeholder="Enter Consultant Email">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">Duration(In Years)</label>
+										<select class="form-control1" name="duration" ng-model="consultant.duration" >
+                                    	<option value="" readonly>Select Duration</option>
+                                        <option value="">0</option>
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                    </select>
+								</div>
+                                </div>
+                                <div class="form-group">
+                                <div class="form-group col-md-3">
+									<label for="focusedinput" class="control-label">Organization</label>
+										<input type="text" class="form-control1" ng-model="consultant.company1" name="company" placeholder="Enter Organization">
+								</div>
+                                <div class="form-group col-md-3">
+									<label for="focusedinput" class="control-label">Position</label>
+										<input type="text" class="form-control1" name="Position" ng-model="consultant.position1" placeholder="Enter Position">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">From</label>
+										<input type="date" class="form-control1" name="from" ng-model="consultant.fromdate1" placeholder="Enter Consultant Email">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">To</label>
+										<input type="date" class="form-control1" name="to" ng-model="consultant.todate1" placeholder="Enter Consultant Email">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">Duration(In Years)</label>
+										<select class="form-control1" name="duration" ng-model="consultant.duration1" >
+                                    	<option value="" readonly>Select Duration</option>
+                                        <option value="">0</option>
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                    </select>
+								</div>
+                                </div>
+                                <div class="form-group">
+                                <div class="form-group col-md-3">
+									<label for="focusedinput" class="control-label">Organization</label>
+										<input type="text" class="form-control1" ng-model="consultant.company" name="company2" placeholder="Enter Organization">
+								</div>
+                                <div class="form-group col-md-3">
+									<label for="focusedinput" class="control-label">Position</label>
+										<input type="text" class="form-control1" name="Position" ng-model="consultant.position2" placeholder="Enter Position">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">From</label>
+										<input type="date" class="form-control1" name="from" ng-model="consultant.fromdate2" placeholder="Enter Consultant Email">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">To</label>
+										<input type="date" class="form-control1" name="to" ng-model="consultant.todate2" placeholder="Enter Consultant Email">
+								</div>
+                                <div class="form-group col-md-2">
+									<label for="focusedinput" class="control-label">Duration(In Years)</label>
+										<select class="form-control1" name="duration" ng-model="consultant.duration2" >
+                                    	<option value="" readonly>Select Duration</option>
+                                        <option value="">0</option>
+                                        <option value="">1</option>
+                                        <option value="">2</option>
+                                        <option value="">3</option>
+                                    </select>
+								</div>
+                                </div>
+
+                    <!--<div class="form-group">-->
+                        <label class="control-label">Profile Pic</label>
+                        <!--<div class="fileUpload">-->
+                            <!--<span>Upload</span>
+                            <input type="file" accept="image/*" onchange="angular.element(this).scope().file_to_upload(this.files)" name="fileInput" class="form-control upload" ng-model="consultant.profile"/>
+                       -->
+                       <div class="form-group ">
+                            <div class="col-lg-3 col-md-3 col-sm-3 form-group" style="padding-top: 25px;">
+                                <label class="control-label">Consultant Photo<span class="astrick">*</span></label>
+                            </div>
+                    <div class="form-group">
+                        <label class="control-label">Profile Pic</label>
+                        <div class="fileUpload">
+                            <button>Upload</button>
+                            <input type="file" id="singleInputFileName"
+                                    name="fileInput"
+                                   class="form-control upload" file-model="consultant.profile"/>
+                        </div>
+                    </div>
+                        </div>
+                        <!--</div>
+                    </div>-->
+                </div>
+                <div class="panel-footer">
+                    <button type="form"  class="btn btn-demo">Add consultant</button>
+                </div>
+                <!-- END panel-->
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $("#phone").intlTelInput();
+</script>
+<script>
+    $(document).ready(function() {
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+    
+</script>
+<!-- **************************************************************************
+******************* Modal to display msg for conflict **************************************
+*******************************************************************************-->
+<!--<script type="text/ng-template" id="display_failure_conflict_msg"
+<div class="ngdialog-message">
+<h4>Promo Code Already exist.</h4>-->
+<!--<button type="submit" ng-click="closeThisDialog(0)" class="btn btn-success"-->
+<!--style="margin-top:20px;float:right;">OK-->
+<!--</button>-->
+<!--<div style="clear: both;"></div>-->
+<!--</div>-->
+<!--</script>-->
