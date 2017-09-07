@@ -81,7 +81,7 @@ var adminLogin = function(UserData, callback) {
 
 };
 var addConsultant = function(request,callback){
-        console.log("Add Consultant")
+        console.log("Add Consultant",request)
     var access_token= request.headers.authorization;
     var data =request.body;
      var dataToSet = {};
@@ -184,6 +184,7 @@ var addConsultant = function(request,callback){
         });
         }, function (cb) {
         if (isauth) {
+            console.log(dataToSet,"dataatoset")
          Service.AdminService.createAdmin(dataToSet,function (err, data) {
             if (err) {
                 cb({errorMessage: 'DB Error: ' + err})

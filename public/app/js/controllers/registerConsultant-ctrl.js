@@ -56,12 +56,11 @@ App.controller('addconsultantController', function ($scope, $http, $cookies, mul
     $scope.addconsultant = function (consultant) {
         console.log($scope.consultant);
 
-        var UploadUrl=MY_CONSTANT.url + '/api/admin/add_consultant';
-        multipartForm.post(UploadUrl,$cookieStore.get('obj').accesstoken,$scope.consultant)
+     
         var testEmail = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
         var emailValue = consultant.email;
         var ConsultantType = [];
-         console.log( $scope.user.profile.name+"post")
+        
         ConsultantType.push(consultant.ConsultantType);
         var countryData = $("#phone").intlTelInput("getSelectedCountryData");
         var countryCode = countryData.dialCode;
@@ -104,16 +103,7 @@ App.controller('addconsultantController', function ($scope, $http, $cookies, mul
             return false;
         }
 
-    
-        $http({
-            method : "POST",
-            url: MY_CONSTANT.url + '/api/admin/add_consultant',
-            transformRequest:angular.identity ,
-            headers: {
-                'authorization': $cookieStore.get('obj').accesstoken,
-                'Content-Type':undefined,'Process-Data':false
-             },
-            data: {
+    var data ={
                 'firstName':consultant.fname,
                 'lastName':consultant.lname,
                 'email':consultant.email,
@@ -144,6 +134,14 @@ App.controller('addconsultantController', function ($scope, $http, $cookies, mul
                 'duration2':consultant.duration2,
                 'userType':1
             }
+            console.log(data,  "dataatatat");
+        $http({
+            method : "POST",
+            url: MY_CONSTANT.url + '/api/admin/add_consultant',
+            headers: {
+                'authorization': $cookieStore.get('obj').accesstoken
+             },
+            data: data
         })
             .success(function (response) {
                 $("html, body").animate({scrollTop: 0});

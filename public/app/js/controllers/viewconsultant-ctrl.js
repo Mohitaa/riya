@@ -258,7 +258,7 @@ console.log($stateParams);
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    $scope.displaymsg = "Passenger Information Updated Successfully";
+                    $scope.displaymsg = "Consultant Information Updated Successfully";
                     ngDialog.open({
                         template: 'display_msg_modalDialog',
                         className: 'ngdialog-theme-default',

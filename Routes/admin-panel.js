@@ -41,7 +41,7 @@ exports.addConsultant  = function(request, reply) {
         console.log("---------------Add Consultant---------",request.headers);
        
         var access_token=request.headers.authorization;
-        console.log(request.body.name+" "+ request.files+" payload")
+        console.log(request.payload+" "+ request.files+" payload")
        var manvalues = [access_token];
         var checkblank = commonFunc.checkBlank(manvalues);
         if(checkblank==1)

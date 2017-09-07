@@ -207,7 +207,7 @@ console.log($stateParams);
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    $scope.displaymsg = "Passenger Information Updated Successfully";
+                    $scope.displaymsg = "Consultant Information Updated Successfully";
                     ngDialog.open({
                         template: 'display_msg_modalDialog',
                         className: 'ngdialog-theme-default',
@@ -230,7 +230,7 @@ console.log($stateParams);
      * --------- funtion to refresh page ---------------------------------------
      --------------------------------------------------------------------------*/
     $scope.refreshPage = function () {
-        $state.go('app.mypassengers');
+        $state.go('app.listconsultant');
         ngDialog.close({
             template: 'display_msg_modalDialog',
             className: 'ngdialog-theme-default',
