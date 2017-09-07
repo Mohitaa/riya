@@ -1,5 +1,7 @@
 var express=require('express');
 var app=express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 var bodyParser=require('body-parser');
 var methodOverride = require('method-override');
 var favicon = require('serve-favicon');
@@ -23,6 +25,12 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(multer({dest:'./uploads/'}).any());
 app.get('/',function(req,res){
+    io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+
    res.sendFile('index.html',{ root: __dirname });
 
 });
@@ -87,6 +95,6 @@ Bootstrap.bootstrapAdmin(function (err, message) {
 
 
 var port = process.env.PORT || 3001;
-var server=app.listen(port,function(req,res){
+var server=http.listen(port,function(req,res){
     console.log("Catch the action at http://localhost:"+port);
 });

@@ -182,10 +182,10 @@ App.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', 'RouteH
                 templateUrl: helper.basepath('editUser.html'),
                 resolve: helper.resolveFor('datatables', 'datatables-pugins', 'ngDialog','parsley')
             })
-            .state('app.bookings', {
-                url: '/bookings',
-                abstract:true,
-                templateUrl: helper.basepath('bookings.html'),
+            .state('app.chat', {
+                url: '/chat',
+                title: 'Chat',
+                templateUrl: helper.basepath('chat.html'),
                 resolve: helper.resolveFor('modernizr', 'icons', 'screenfull','ngDialog')
             })
             .state('app.bookings.upcoming', {
